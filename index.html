@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shipping Cost Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 400px; margin: 40px auto; padding: 0 16px; }
+    input, button { width: 100%; padding: 10px; margin: 6px 0; font-size: 16px; box-sizing: border-box; }
+    button { background: #1f6feb; color: white; border: none; cursor: pointer; }
+    #result { font-size: 20px; font-weight: bold; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Shipping Cost Calculator</h1>
+  <label>Package weight (kg)</label>
+  <input type="number" id="weight" step="any" min="0">
+  <label>Shipping rate per kg (USD)</label>
+  <input type="number" id="rate" step="any" min="0">
+  <button onclick="calculate()">Calculate</button>
+  <div id="result"></div>
+
+  <script>
+    function calculate() {
+      const weight = parseFloat(document.getElementById("weight").value);
+      const rate = parseFloat(document.getElementById("rate").value);
+      const result = document.getElementById("result");
+      if (isNaN(weight) || isNaN(rate)) {
+        result.textContent = "Please enter valid numbers.";
+        return;
+      }
+      result.textContent = "Shipping Cost: " + (weight * rate).toFixed(2) + " USD";
+    }
+  </script>
+</body>
+</html>
